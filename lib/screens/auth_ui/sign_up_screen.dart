@@ -20,7 +20,7 @@ class _signUpScreenState extends State<signUpScreen> {
 final EmailSignUpController emailSignUpController =
       Get.put(EmailSignUpController());
        
-    TextEditingController username = TextEditingController();
+  TextEditingController username = TextEditingController();
   TextEditingController userEmail = TextEditingController();
   TextEditingController userPhone = TextEditingController();
   TextEditingController userCity = TextEditingController();

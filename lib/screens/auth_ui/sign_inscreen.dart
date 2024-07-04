@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-
 import '../../controllers/get_user_data_controller.dart';
 
 class signInScreen extends StatefulWidget {

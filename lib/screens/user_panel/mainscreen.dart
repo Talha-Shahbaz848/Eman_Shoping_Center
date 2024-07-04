@@ -1,42 +1,49 @@
-import 'package:eman_shoping_center/screens/auth_ui/welcome_screen.dart';
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
+
 import 'package:eman_shoping_center/utils/app_constant.dart';
+import 'package:eman_shoping_center/widgets/banner_widget.dart';
+import 'package:eman_shoping_center/widgets/drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:lottie/lottie.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
-
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
+
+User? user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppConstant.appMainColor,
-        title: Text(AppConstant.appMainName),
+        title: Text(AppConstant.appMainName, style: TextStyle(color: AppConstant.appTextColor),),
         centerTitle: true,
-        actions:  [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () async{
-                GoogleSignIn googleSignIn = GoogleSignIn();
-               FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-               await firebaseAuth.signOut();
-               await googleSignIn.signOut();
-                Get.offAll(()=> welcomeScreen());
-              },
-              child: const Icon(Icons.logout)),
-            
-          ),
-        ],
+         
+      iconTheme: IconThemeData(
+        color: AppConstant.appTextColor
+      )
       ),
-      body: Lottie.asset('assets/images/appicon.json'),
+      
+      drawer: DrawerWidget(),
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Container(
+          child: Column(
+            children: [
+              SizedBox(
+               height: Get.height / 90.0,
+              ),
+              Text("Eman shoping Center"),
+              BannerWidget(),
+            ],
+          ),
+        ),
+      )
     );
   }
 }
